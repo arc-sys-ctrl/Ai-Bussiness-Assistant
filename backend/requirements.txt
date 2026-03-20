@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+google-generativeai
+python-dotenv
+torch
+transformers
+pandas
+numpy
+pydantic
