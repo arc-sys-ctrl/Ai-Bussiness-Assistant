@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'chat_screen.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -29,12 +29,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-    // Navigate to ChatScreen after animation
+    // Navigate to LoginScreen after animation
     Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => ChatScreen(),
+            pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return FadeTransition(opacity: animation, child: child);
             },

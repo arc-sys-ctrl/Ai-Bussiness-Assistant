@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../services/api_service.dart';
+import 'dashboard_screen.dart';
+import 'settings_screen.dart';
+import 'profile_screen.dart';
+import 'history_screen.dart';
+import 'alerts_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -49,6 +54,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      drawer: _buildDrawer(context),
       appBar: AppBar(
         title: Text("ArfiAI Assistant", style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2)),
         backgroundColor: Colors.black.withOpacity(0.4),
@@ -139,6 +145,47 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDrawer(BuildContext context) {
+    return Drawer(
+      backgroundColor: Color(0xFF1E1E1E),
+      child: Column(
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blueAccent, Colors.purpleAccent])),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.auto_awesome, color: Colors.white, size: 40),
+                  SizedBox(height: 10),
+                  Text("ArfiAI Suite", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                ],
+              ),
+            ),
+          ),
+          _buildDrawerItem(Icons.dashboard, "Dashboard", () => Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()))),
+          _buildDrawerItem(Icons.chat, "AI Assistant", () => Navigator.pop(context)),
+          _buildDrawerItem(Icons.history, "History", () => Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryScreen()))),
+          _buildDrawerItem(Icons.notifications, "Alerts", () => Navigator.push(context, MaterialPageRoute(builder: (context) => AlertsScreen()))),
+          _buildDrawerItem(Icons.settings, "Settings", () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen()))),
+          _buildDrawerItem(Icons.business, "Profile", () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()))),
+          Spacer(),
+          Divider(color: Colors.white24),
+          _buildDrawerItem(Icons.logout, "Logout", () => Navigator.pop(context), color: Colors.redAccent),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDrawerItem(IconData icon, String title, VoidCallback onTap, {Color color = Colors.white}) {
+    return ListTile(
+      leading: Icon(icon, color: color),
+      title: Text(title, style: TextStyle(color: color)),
+      onTap: onTap,
     );
   }
 
