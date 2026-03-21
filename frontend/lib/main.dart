@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/signup_screen.dart';
+import 'screens/dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +17,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.blueAccent,
-        scaffoldBackgroundColor: Color(0xFF121212),
+        scaffoldBackgroundColor: const Color(0xFF121212),
       ),
-      home: SplashScreen(),
+      initialRoute: '/',
+      routes: {
+        '/':        (context) => SplashScreen(),
+        '/login':    (context) => LoginScreen(),
+        '/signup':   (context) => SignupScreen(),
+        '/dashboard': (context) => DashboardScreen(),
+      },
     );
   }
 }
