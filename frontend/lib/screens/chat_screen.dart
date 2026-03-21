@@ -159,7 +159,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.auto_awesome, color: Colors.white, size: 40),
+                  Image.asset('assets/images/ai_logo.png', height: 60),
                   SizedBox(height: 10),
                   Text("ArfiAI Suite", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'chat_screen.dart';
+import 'package:http/http.dart' as http;
 import 'login_screen.dart';
+import 'chat_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
+  String _statusMessage = "Initializing Systems...";
 
   @override
   void initState() {
@@ -29,21 +31,42 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
 
     _controller.forward();
+    _startDiagnostics();
+  }
 
-    // Navigate to LoginScreen after animation
-    Future.delayed(Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return FadeTransition(opacity: animation, child: child);
-            },
-            transitionDuration: Duration(milliseconds: 800),
-          ),
-        );
+  void _startDiagnostics() async {
+    // 1. Branding Animation Delay
+    await Future.delayed(Duration(seconds: 2));
+
+    // 2. Backend Connectivity Check
+    setState(() => _statusMessage = "Connecting to Backend...");
+    try {
+      final response = await http.get(Uri.parse("http://10.0.2.2:8000/")).timeout(Duration(seconds: 5));
+      if (response.statusCode == 200) {
+        setState(() => _statusMessage = "System Ready");
+      } else {
+        setState(() => _statusMessage = "Backend Warning: ${response.statusCode}");
       }
-    });
+    } catch (e) {
+      setState(() => _statusMessage = "Offline Mode Enabled");
+    }
+
+    await Future.delayed(Duration(milliseconds: 500));
+    _navigateToLogin();
+  }
+
+  void _navigateToLogin() {
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: Duration(milliseconds: 800),
+        ),
+      );
+    }
   }
 
   @override
@@ -81,10 +104,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       ),
                     ],
                   ),
-                  child: Icon(
-                    Icons.auto_awesome,
-                    size: 80,
-                    color: Colors.white,
+                  child: Image.asset(
+                    'assets/images/ai_logo.png',
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 SizedBox(height: 30),
@@ -102,7 +126,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Advanced Business Intelligence",
+                  _statusMessage,
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 14,
