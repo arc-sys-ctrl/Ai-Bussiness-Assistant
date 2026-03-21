@@ -44,6 +44,7 @@ class InputLayer:
     Parameters: W_embed  [VOCAB_SIZE × EMBED_DIM]
     """
     def __init__(self):
+        # Create as leaf tensor
         self.W_embed = torch.randn(VOCAB_SIZE, EMBED_DIM) * 0.01
         self.W_embed.requires_grad_(True)
 
@@ -65,10 +66,16 @@ class HiddenLayer:
                 W2 [HIDDEN_1  × HIDDEN_2], b2 [HIDDEN_2]
     """
     def __init__(self):
-        self.W1 = torch.randn(EMBED_DIM, HIDDEN_1, requires_grad=True) * 0.01
-        self.b1 = torch.zeros(HIDDEN_1,             requires_grad=True)
-        self.W2 = torch.randn(HIDDEN_1, HIDDEN_2,  requires_grad=True) * 0.01
-        self.b2 = torch.zeros(HIDDEN_2,             requires_grad=True)
+        with torch.no_grad():
+            self.W1 = torch.randn(EMBED_DIM, HIDDEN_1) * 0.01
+            self.b1 = torch.zeros(HIDDEN_1)
+            self.W2 = torch.randn(HIDDEN_1, HIDDEN_2) * 0.01
+            self.b2 = torch.zeros(HIDDEN_2)
+        
+        self.W1.requires_grad_(True)
+        self.b1.requires_grad_(True)
+        self.W2.requires_grad_(True)
+        self.b2.requires_grad_(True)
 
     def forward(self, x: torch.Tensor, training: bool = False) -> torch.Tensor:
         # Layer 1
@@ -102,8 +109,12 @@ class OutputLayer:
     ]
 
     def __init__(self):
-        self.W_out = torch.randn(HIDDEN_2, OUTPUT_DIM, requires_grad=True) * 0.01
-        self.b_out = torch.zeros(OUTPUT_DIM,            requires_grad=True)
+        with torch.no_grad():
+            self.W_out = torch.randn(HIDDEN_2, OUTPUT_DIM) * 0.01
+            self.b_out = torch.zeros(OUTPUT_DIM)
+        
+        self.W_out.requires_grad_(True)
+        self.b_out.requires_grad_(True)
 
     def forward(self, h: torch.Tensor) -> torch.Tensor:
         logits = h @ self.W_out + self.b_out    # [OUTPUT_DIM]

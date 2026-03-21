@@ -4,11 +4,20 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  // Use 10.0.2.2 for Android emulator, localhost for Linux desktop
-  static String get _base =>
-      kIsWeb || !defaultTargetPlatform.toString().contains('android')
-          ? 'http://localhost/api/v1'
-          : 'http://10.0.2.2/api/v1';
+  static String get _base {
+    if (kIsWeb) return 'http://localhost:8001/api/v1';
+    
+    // For Android Emulator
+    if (defaultTargetPlatform == TargetPlatform.android && !kDebugMode) {
+      // In prod/real device, use local IP. 
+      // Replace with your tunnel URL for external network access.
+      return 'http://10.1.5.96:8001/api/v1'; 
+    }
+    
+    // Default for Linux Desktop and Real Devices on same WiFi
+    // 10.1.5.96 is your computer's current local IP
+    return 'http://10.1.5.96:8001/api/v1';
+  }
 
   // ─── Token Management ─────────────────────────────────────── //
   static Future<void> saveSession(Map<String, dynamic> data) async {
