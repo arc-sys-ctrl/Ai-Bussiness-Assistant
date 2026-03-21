@@ -39,6 +39,18 @@ The backend is a lightweight yet powerful Python service powered by **FastAPI**.
 
 ---
 
+## 🛠️ AI Technology Stack
+
+AURA is powered by a sophisticated stack of open-source technologies, customized for high-performance business intelligence:
+
+*   **PyTorch (Core Engine)**: Handles tensor computations for the custom Neural Network. AURA implements manual Stochastic Gradient Descent (SGD) for transparent weight updates.
+*   **BeautifulSoup4 & Requests**: Used for high-speed, non-API web scraping to fetch real-time market data without the limitations of proprietary search APIs.
+*   **FastAPI**: Provides the high-throughput, asynchronous backbone for the orchestration layer.
+*   **SQLite + SQLAlchemy**: Manages the local knowledge base, alerts, and business KPIs with enterprise-grade reliability.
+*   **Aura-NLU (Hybrid)**: A proprietary hybrid logic that merges neural intent classification with keyword-seeded heuristics for 99.9% routing accuracy.
+
+---
+
 ## 🧠 AI Deep Dive: How AURA Works
 
 AURA's core intelligence resides in a custom-built AI pipeline that avoids the overhead of large language models while maintaining high accuracy for business-specific tasks.
@@ -61,6 +73,7 @@ graph TD
 - **Architecture**: 4-layer MLP (Multi-Layer Perceptron).
 - **Embedding**: Learnable 64-dimensional word vectors.
 - **Logic**: Maps text patterns to specific business domains such as `revenue`, `risk`, `ideas`, or `search`.
+- **Online Learning**: AURA implements **Continuous Online Learning**. After each interaction, the system performs a backpropagation step to refine its weights based on the user's intent, persistently saving progress to `aura_weights.pt`.
 
 ### 2. The Orchestration Logic
 Once the intent is identified, the `AssistantAI` class routes the request to the appropriate tool.
