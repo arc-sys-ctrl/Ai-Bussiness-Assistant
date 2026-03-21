@@ -10,13 +10,14 @@ from fastapi import APIRouter, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
 from jose import jwt, JWTError
-from passlib.context import CryptContext
+import bcrypt
 
 from ..db import get_db
 from ..models import User, RefreshToken, Workspace, WorkspaceMember, AuditLog
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# router = APIRouter(prefix="/auth", tags=["Authentication"])
+# pwd_context removed because of passlib/bcrypt 4.0 incompatibility on Python 3.13
 
 SECRET_KEY  = os.getenv("SECRET_KEY", "aura-super-secret-change-in-prod-64-chars-minimum!")
 ALGORITHM   = "HS256"
@@ -40,10 +41,14 @@ class RefreshRequest(BaseModel):
 
 # ─── Helpers ──────────────────────────────────────────────────────────────── #
 def hash_password(pw: str) -> str:
-    return pwd_context.hash(pw)
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pw.encode('utf-8'), salt).decode('utf-8')
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+    try:
+        return bcrypt.checkpw(plain.encode('utf-8'), hashed.encode('utf-8'))
+    except Exception:
+        return False
 
 def create_access_token(user_id: int) -> str:
     expire = datetime.utcnow() + ACCESS_TTL
