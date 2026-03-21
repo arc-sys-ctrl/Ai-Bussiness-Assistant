@@ -1,6 +1,6 @@
 # AURA: AI Business Assistant
 
-![AURA Hero](/home/kali/Pictures/ai\ business/aura\ assistant.jpg)
+![AURA Hero](./assets/screenshots/aura_assistant.jpg)
 
 AURA (Advanced User Response Assistant) is a high-performance, locally-hosted AI Business Assistant designed for enterprise-grade analytics, market intelligence, and strategic ideation. Unlike traditional AI tools, AURA runs entirely on-device, ensuring maximum data privacy and low-latency responses without relying on external LLM APIs.
 
@@ -13,7 +13,7 @@ AURA is built on a modern decoupled architecture consisting of a high-performanc
 ### 🎨 Frontend (Flutter)
 The frontend is a cross-platform application built with **Flutter**, providing a sleek, dark-themed dashboard inspired by modern financial terminals.
 
-![Intelligence Dashboard](/home/kali/Pictures/ai\ business/intelligent-dashboard.jpg)
+![Intelligence Dashboard](./assets/screenshots/intelligent-dashboard.jpg)
 
 - **Screens**: Dashboard, Real-time Chat, Analytics (using high-fidelity charts), Market Intelligence, OKR Tracking, and Task Management.
 - **State Management**: Built-in Provider/Bloc patterns for reactive UI updates.
@@ -96,19 +96,19 @@ Behold the visual power of AURA. Every screen is designed for maximum clarity an
 
 | Dashboard | Real-time AI Chat |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/intelligent-dashboard.jpg) | ![](/home/kali/Pictures/ai\ business/chat.jpg) |
+| ![](./assets/screenshots/intelligent-dashboard.jpg) | ![](./assets/screenshots/chat.jpg) |
 
 | Market Analytics | OKR Tracking |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/analytcs.jpg) | ![](/home/kali/Pictures/ai\ business/okr.jpg) |
+| ![](./assets/screenshots/analytcs.jpg) | ![](./assets/screenshots/okr.jpg) |
 
 | Idea Generation | Real-time Alerts |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/idea.jpg) | ![](/home/kali/Pictures/ai\ business/alert.jpg) |
+| ![](./assets/screenshots/idea.jpg) | ![](./assets/screenshots/alert.jpg) |
 
 | Tasks & Operations | Latest Market News |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/todo.jpg) | ![](/home/kali/Pictures/ai\ business/news.jpg) |
+| ![](./assets/screenshots/todo.jpg) | ![](./assets/screenshots/news.jpg) |
 
 ---
 
