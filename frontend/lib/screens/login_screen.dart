@@ -22,14 +22,14 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Icon(Icons.auto_awesome, size: 80, color: Colors.blueAccent),
                 SizedBox(height: 20),
-                Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+                Text("AURA Suite", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)), // Changed "Welcome Back" to "AURA Suite"
                 SizedBox(height: 40),
                 _buildTextField(Icons.email, "Email"),
                 SizedBox(height: 20),
                 _buildTextField(Icons.lock, "Password", obscureText: true),
                 SizedBox(height: 40),
                 ElevatedButton(
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatScreen())),
+                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardScreen())),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     minimumSize: Size(double.infinity, 50),

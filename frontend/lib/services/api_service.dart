@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // Use the Nginx proxy address. 10.0.2.2 is usually the host machine in Android emulators.
-  static const String baseUrl = "http://10.0.2.2/chat"; 
-  static const String dashboardUrl = "http://10.0.2.2/dashboard";
+  static const String baseUrl = "http://10.0.2.2/api/v1/chat"; 
+  static const String dashboardUrl = "http://10.0.2.2/api/v1/dashboard";
 
   static Future<String> sendMessage(String msg) async {
     try {
@@ -54,7 +54,7 @@ class ApiService {
 
   static Future<List<Map<String, dynamic>>> fetchAlerts() async {
     try {
-      final res = await http.get(Uri.parse("http://10.0.2.2/alerts"));
+      final res = await http.get(Uri.parse("http://10.0.2.2/api/v1/alerts"));
       if (res.statusCode == 200) {
         return List<Map<String, dynamic>>.from(jsonDecode(res.body));
       }
@@ -66,7 +66,7 @@ class ApiService {
 
   static Future<Map<String, dynamic>> fetchProfile() async {
     try {
-      final res = await http.get(Uri.parse("http://10.0.2.2/profile"));
+      final res = await http.get(Uri.parse("http://10.0.2.2/api/v1/profile"));
       if (res.statusCode == 200) {
         return jsonDecode(res.body);
       }
