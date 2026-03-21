@@ -8,3 +8,6 @@ class AssistantService:
         return {
             "response": self.ai.generate_response(message, db=db)
         }
+
+    def learn(self, text: str, correct_intent: str):
+        return self.ai.learner.learn_from_feedback(text, correct_intent)

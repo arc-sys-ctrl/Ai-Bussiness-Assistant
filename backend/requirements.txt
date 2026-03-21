@@ -1,9 +1,7 @@
 fastapi
 uvicorn
-google-generativeai
 python-dotenv
 torch
-transformers
 pandas
 numpy
 pydantic
@@ -11,3 +9,5 @@ sqlalchemy
 mysql-connector-python
 cryptography
 passlib[bcrypt]
+requests
+beautifulsoup4
