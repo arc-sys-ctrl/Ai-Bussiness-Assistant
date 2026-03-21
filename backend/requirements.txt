@@ -11,3 +11,4 @@ cryptography
 passlib[bcrypt]
 requests
 beautifulsoup4
+python-jose[cryptography]
