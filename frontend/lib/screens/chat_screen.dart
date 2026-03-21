@@ -29,10 +29,12 @@ class _ChatScreenState extends State<ChatScreen> {
     _controller.clear();
     _scrollToBottom();
 
-    var res = await ApiService.sendMessage(userMsg);
+    final res = await ApiService.sendMessage(userMsg);
+    final aiText  = res['response'] as String? ?? 'No response';
+    final chatId  = res['chat_id'] as int?;
 
     setState(() {
-      _messages.add({"sender": "ai", "text": res});
+      _messages.add({"sender": "ai", "text": aiText, "chat_id": chatId});
       _isLoading = false;
     });
     _scrollToBottom();
