@@ -11,11 +11,24 @@ AURA (Advanced User Response Assistant) is a high-performance, locally-hosted AI
 AURA is built on a modern decoupled architecture consisting of a high-performance Python backend and a responsive Flutter frontend.
 
 ### 🎨 Frontend (Flutter)
-The frontend is a cross-platform application (targeting Linux, Android, and Web) built with **Flutter**. It provides a sleek, dark-themed dashboard inspired by modern financial terminals.
+The frontend is a cross-platform application built with **Flutter**, providing a sleek, dark-themed dashboard inspired by modern financial terminals.
+
+![Intelligence Dashboard](/home/kali/Pictures/ai\ business/intelligent-dashboard.jpg)
 
 - **Screens**: Dashboard, Real-time Chat, Analytics (using high-fidelity charts), Market Intelligence, OKR Tracking, and Task Management.
 - **State Management**: Built-in Provider/Bloc patterns for reactive UI updates.
 - **Visuals**: Premium glassmorphic design and micro-animations for an immersive user experience.
+
+---
+
+## 🎯 Market Problems Solved
+
+AURA addresses several critical pain points in the modern business landscape:
+
+*   **Fragmented Business Intelligence**: Centralizes disparate metrics (revenue, sentiment, alerts) into a single, cohesive "Intelligence Terminal."
+*   **Real-time Decision Paralysis**: Leverages live web-scraping and custom neural networks to provide *instant* strategic insights, reducing the window from data to action.
+*   **Corporate Data Privacy**: Unlike cloud-hosted LLMs, AURA's local-first architecture ensures that sensitive business strategies never leave your secure infrastructure.
+*   **Strategic Stagnation**: The **Idea Engine** overcomes "writer's block" for executives by generating high-entropy business models and product strategies based on live market trends.
 
 ### ⚙️ Backend (FastAPI + PyTorch)
 The backend is a lightweight yet powerful Python service powered by **FastAPI**.
