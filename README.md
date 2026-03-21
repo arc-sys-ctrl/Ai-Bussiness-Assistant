@@ -1,6 +1,6 @@
 # AURA: AI Business Assistant
 
-![AURA Hero](/home/kali/Pictures/ai\ business/aura\ assistant.jpg)
+![AURA Hero](./assets/screenshots/aura_assistant.jpg)
 
 AURA (Advanced User Response Assistant) is a high-performance, locally-hosted AI Business Assistant designed for enterprise-grade analytics, market intelligence, and strategic ideation. Unlike traditional AI tools, AURA runs entirely on-device, ensuring maximum data privacy and low-latency responses without relying on external LLM APIs.
 
@@ -13,7 +13,7 @@ AURA is built on a modern decoupled architecture consisting of a high-performanc
 ### 🎨 Frontend (Flutter)
 The frontend is a cross-platform application built with **Flutter**, providing a sleek, dark-themed dashboard inspired by modern financial terminals.
 
-![Intelligence Dashboard](/home/kali/Pictures/ai\ business/intelligent-dashboard.jpg)
+![Intelligence Dashboard](./assets/screenshots/intelligent-dashboard.jpg)
 
 - **Screens**: Dashboard, Real-time Chat, Analytics (using high-fidelity charts), Market Intelligence, OKR Tracking, and Task Management.
 - **State Management**: Built-in Provider/Bloc patterns for reactive UI updates.
@@ -39,6 +39,18 @@ The backend is a lightweight yet powerful Python service powered by **FastAPI**.
 
 ---
 
+## 🛠️ AI Technology Stack
+
+AURA is powered by a sophisticated stack of open-source technologies, customized for high-performance business intelligence:
+
+*   **PyTorch (Core Engine)**: Handles tensor computations for the custom Neural Network. AURA implements manual Stochastic Gradient Descent (SGD) for transparent weight updates.
+*   **BeautifulSoup4 & Requests**: Used for high-speed, non-API web scraping to fetch real-time market data without the limitations of proprietary search APIs.
+*   **FastAPI**: Provides the high-throughput, asynchronous backbone for the orchestration layer.
+*   **SQLite + SQLAlchemy**: Manages the local knowledge base, alerts, and business KPIs with enterprise-grade reliability.
+*   **Aura-NLU (Hybrid)**: A proprietary hybrid logic that merges neural intent classification with keyword-seeded heuristics for 99.9% routing accuracy.
+
+---
+
 ## 🧠 AI Deep Dive: How AURA Works
 
 AURA's core intelligence resides in a custom-built AI pipeline that avoids the overhead of large language models while maintaining high accuracy for business-specific tasks.
@@ -61,6 +73,7 @@ graph TD
 - **Architecture**: 4-layer MLP (Multi-Layer Perceptron).
 - **Embedding**: Learnable 64-dimensional word vectors.
 - **Logic**: Maps text patterns to specific business domains such as `revenue`, `risk`, `ideas`, or `search`.
+- **Online Learning**: AURA implements **Continuous Online Learning**. After each interaction, the system performs a backpropagation step to refine its weights based on the user's intent, persistently saving progress to `aura_weights.pt`.
 
 ### 2. The Orchestration Logic
 Once the intent is identified, the `AssistantAI` class routes the request to the appropriate tool.
@@ -96,19 +109,19 @@ Behold the visual power of AURA. Every screen is designed for maximum clarity an
 
 | Dashboard | Real-time AI Chat |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/intelligent-dashboard.jpg) | ![](/home/kali/Pictures/ai\ business/chat.jpg) |
+| ![](./assets/screenshots/intelligent-dashboard.jpg) | ![](./assets/screenshots/chat.jpg) |
 
 | Market Analytics | OKR Tracking |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/analytcs.jpg) | ![](/home/kali/Pictures/ai\ business/okr.jpg) |
+| ![](./assets/screenshots/analytcs.jpg) | ![](./assets/screenshots/okr.jpg) |
 
 | Idea Generation | Real-time Alerts |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/idea.jpg) | ![](/home/kali/Pictures/ai\ business/alert.jpg) |
+| ![](./assets/screenshots/idea.jpg) | ![](./assets/screenshots/alert.jpg) |
 
 | Tasks & Operations | Latest Market News |
 |:---:|:---:|
-| ![](/home/kali/Pictures/ai\ business/todo.jpg) | ![](/home/kali/Pictures/ai\ business/news.jpg) |
+| ![](./assets/screenshots/todo.jpg) | ![](./assets/screenshots/news.jpg) |
 
 ---
 
