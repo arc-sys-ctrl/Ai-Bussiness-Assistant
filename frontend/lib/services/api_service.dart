@@ -5,18 +5,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
   static String get _base {
-    if (kIsWeb) return 'http://localhost:8001/api/v1';
+    if (kIsWeb) return 'http://localhost:8000/api/v1';
     
     // For Android Emulator
-    if (defaultTargetPlatform == TargetPlatform.android && !kDebugMode) {
-      // In prod/real device, use local IP. 
-      // Replace with your tunnel URL for external network access.
-      return 'http://10.1.5.96:8001/api/v1'; 
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      // 10.0.2.2 is the special IP to access localhost from Android Emulator
+      return 'http://10.0.2.2:8000/api/v1'; 
     }
     
     // Default for Linux Desktop and Real Devices on same WiFi
-    // 10.1.5.96 is your computer's current local IP
-    return 'http://10.1.5.96:8001/api/v1';
+    // 127.0.0.1 for desktop, or use the computer's local IP for real devices
+    return 'http://127.0.0.1:8000/api/v1';
   }
 
   // ─── Token Management ─────────────────────────────────────── //
