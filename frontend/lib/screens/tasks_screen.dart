@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import '../widgets/aura_drawer.dart';
 
 class TasksScreen extends StatefulWidget {
   @override
@@ -45,6 +46,7 @@ class _TasksScreenState extends State<TasksScreen> {
     for (var t in _tasks) columns[t['status'] ?? 'todo']?.add(t);
 
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: const Color(0xFF0F2027),
       appBar: AppBar(
         title: const Text("Task Board"),

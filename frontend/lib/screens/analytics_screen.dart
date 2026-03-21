@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import '../widgets/aura_drawer.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   @override
@@ -39,6 +40,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F2027),
+      drawer: const AuraDrawer(),
       appBar: AppBar(title: const Text("Analytics"), backgroundColor: Colors.transparent,
           actions: [IconButton(icon: const Icon(Icons.refresh), onPressed: _load)]),
       body: _loading

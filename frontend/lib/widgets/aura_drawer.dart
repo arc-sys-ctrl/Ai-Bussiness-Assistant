@@ -1,16 +1,4 @@
 import 'package:flutter/material.dart';
-import '../screens/dashboard_screen.dart';
-import '../screens/chat_screen.dart';
-import '../screens/alerts_screen.dart';
-import '../screens/profile_screen.dart';
-import '../screens/history_screen.dart';
-import '../screens/settings_screen.dart';
-import '../screens/tasks_screen.dart';
-import '../screens/market_screen.dart';
-import '../screens/ideas_screen.dart';
-import '../screens/okr_screen.dart';
-import '../screens/analytics_screen.dart';
-import '../screens/login_screen.dart';
 import '../services/api_service.dart';
 
 class AuraDrawer extends StatelessWidget {
@@ -45,23 +33,23 @@ class AuraDrawer extends StatelessWidget {
             Expanded(
               child: ListView(padding: const EdgeInsets.symmetric(vertical: 8), children: [
                 _section("CORE"),
-                _drawerItem(context, Icons.dashboard_rounded,       "Dashboard",         () => DashboardScreen()),
-                _drawerItem(context, Icons.chat_bubble_outline,     "AI Assistant",      () => ChatScreen()),
-                _drawerItem(context, Icons.analytics_outlined,      "Analytics",         () => AnalyticsScreen()),
+                _drawerItem(context, Icons.dashboard_rounded,       "Dashboard",         "/dashboard"),
+                _drawerItem(context, Icons.chat_bubble_outline,     "AI Assistant",      "/chat"),
+                _drawerItem(context, Icons.analytics_outlined,      "Analytics",         "/analytics"),
 
                 _section("WORKSPACE"),
-                _drawerItem(context, Icons.task_alt_outlined,       "Tasks",             () => TasksScreen()),
-                _drawerItem(context, Icons.flag_outlined,           "OKR Tracker",       () => OKRScreen()),
-                _drawerItem(context, Icons.lightbulb_outline,       "Idea Engine",       () => IdeasScreen()),
+                _drawerItem(context, Icons.task_alt_outlined,       "Tasks",             "/tasks"),
+                _drawerItem(context, Icons.flag_outlined,           "OKR Tracker",       "/okr"),
+                _drawerItem(context, Icons.lightbulb_outline,       "Idea Engine",       "/ideas"),
 
                 _section("INTELLIGENCE"),
-                _drawerItem(context, Icons.newspaper_outlined,      "Market Intelligence", () => MarketScreen()),
-                _drawerItem(context, Icons.notifications_outlined,  "Alerts",            () => AlertsScreen()),
-                _drawerItem(context, Icons.history,                 "Chat History",      () => HistoryScreen()),
+                _drawerItem(context, Icons.newspaper_outlined,      "Market Intelligence", "/market"),
+                _drawerItem(context, Icons.notifications_outlined,  "Alerts",            "/alerts"),
+                _drawerItem(context, Icons.history,                 "Chat History",      "/history"),
 
                 _section("ACCOUNT"),
-                _drawerItem(context, Icons.person_outline,          "Profile",           () => ProfileScreen()),
-                _drawerItem(context, Icons.settings_outlined,       "Settings",          () => SettingsScreen()),
+                _drawerItem(context, Icons.person_outline,          "Profile",           "/profile"),
+                _drawerItem(context, Icons.settings_outlined,       "Settings",          "/settings"),
               ]),
             ),
 
@@ -76,10 +64,7 @@ class AuraDrawer extends StatelessWidget {
                 onTap: () async {
                   await ApiService.logout();
                   if (context.mounted) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => LoginScreen()),
-                      (_) => false,
-                    );
+                    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
                   }
                 },
               ),
@@ -97,14 +82,20 @@ class AuraDrawer extends StatelessWidget {
     );
   }
 
-  Widget _drawerItem(BuildContext ctx, IconData icon, String label, Widget Function() builder) {
+  Widget _drawerItem(BuildContext ctx, IconData icon, String label, String route) {
+    final currentRoute = ModalRoute.of(ctx)?.settings.name;
+    final isSelected = currentRoute == route;
+
     return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent, size: 22),
-      title: Text(label, style: const TextStyle(color: Colors.white, fontSize: 14)),
+      leading: Icon(icon, color: isSelected ? Colors.white : Colors.blueAccent, size: 22),
+      title: Text(label, style: TextStyle(color: isSelected ? Colors.white : Colors.white70, fontSize: 14, fontWeight: isSelected ? FontWeight.bold : FontWeight.normal)),
+      tileColor: isSelected ? Colors.blueAccent.withOpacity(0.1) : Colors.transparent,
       hoverColor: Colors.white.withOpacity(0.04),
       onTap: () {
         Navigator.pop(ctx);
-        Navigator.push(ctx, MaterialPageRoute(builder: (_) => builder()));
+        if (!isSelected) {
+          Navigator.pushReplacementNamed(ctx, route);
+        }
       },
     );
   }

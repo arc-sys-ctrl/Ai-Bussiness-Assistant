@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import "../widgets/aura_drawer.dart";
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: Color(0xFF0F2027),
       appBar: AppBar(title: Text("Company Profile")),
       body: _isLoading 

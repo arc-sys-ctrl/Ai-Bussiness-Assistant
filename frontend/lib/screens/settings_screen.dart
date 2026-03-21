@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import "../widgets/aura_drawer.dart";
 import '../services/api_service.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -65,6 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: const Color(0xFF0F2027),
       appBar: AppBar(
         title: const Text("Settings"),

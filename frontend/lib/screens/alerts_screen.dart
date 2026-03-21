@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import "../widgets/aura_drawer.dart";
 
 class AlertsScreen extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _AlertsScreenState extends State<AlertsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: Color(0xFF121212),
       appBar: AppBar(
         title: Text("Intelligence Alerts"),

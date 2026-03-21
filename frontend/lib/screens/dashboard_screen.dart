@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import '../widgets/aura_drawer.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -37,6 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0F2027),
+      drawer: const AuraDrawer(),
       appBar: AppBar(
         title: Text("Intelligence Dashboard"),
         backgroundColor: Colors.transparent,

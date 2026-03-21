@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import "../widgets/aura_drawer.dart";
 import '../services/api_service.dart';
 
 class MarketScreen extends StatefulWidget {
@@ -32,6 +33,7 @@ class _MarketScreenState extends State<MarketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: const Color(0xFF0F2027),
       appBar: AppBar(title: const Text("Market Intelligence"), backgroundColor: Colors.transparent),
       body: SingleChildScrollView(

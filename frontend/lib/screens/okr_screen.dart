@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import "../widgets/aura_drawer.dart";
+import '../widgets/aura_drawer.dart';
 
 class OKRScreen extends StatefulWidget {
   @override
@@ -41,6 +43,7 @@ class _OKRScreenState extends State<OKRScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: const Color(0xFF0F2027),
       appBar: AppBar(title: const Text("OKR Tracker"), backgroundColor: Colors.transparent,
           actions: [IconButton(icon: const Icon(Icons.refresh), onPressed: _load)]),

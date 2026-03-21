@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import "../widgets/aura_drawer.dart";
 
 class HistoryScreen extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AuraDrawer(),
       backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
         title: const Text("Chat History"),
